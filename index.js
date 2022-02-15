@@ -4,14 +4,14 @@ const cors = require("cors");
 const socketIO = require("socket.io");
 
 const app=express();
+const port= 5000 || process.env.PORT ;
 
 
 const users=[{}];
 
 app.use(cors());
-
 app.get("/",(req,res)=>{
-    res.send("lets roll");
+    res.send("WORKING");
 })
 
 const server=http.createServer(app);
@@ -25,7 +25,7 @@ io.on("connection",(socket)=>{
           users[socket.id]=user;
           console.log(`${user} has joined `);
           socket.broadcast.emit('userJoined',{user:"17Moons",message:` ${users[socket.id]} has joined`});
-          socket.emit('welcome',{user:"17Moons",message:`Welcome onboard,${users[socket.id]} `})
+          socket.emit('welcome',{user:"17Moons",message:`Welcome to the chat,${users[socket.id]} `})
     })
 
     socket.on('message',({message,id})=>{
@@ -39,6 +39,6 @@ io.on("connection",(socket)=>{
 });
 
 
-app.listen(process.env.PORT || 5000, function(){
-    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-  });
+server.listen(port,()=>{
+    console.log(`Working`);
+})
