@@ -4,7 +4,6 @@ const cors = require("cors");
 const socketIO = require("socket.io");
 
 const app=express();
-const port= 5000 || process.env.PORT ;
 
 
 const users=[{}];
@@ -39,6 +38,6 @@ io.on("connection",(socket)=>{
 });
 
 
-server.listen(port,()=>{
-    console.log(`Working`);
-})
+server.listen(process.env.PORT || 5000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
