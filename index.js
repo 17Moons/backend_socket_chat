@@ -10,6 +10,7 @@ const port= 4500 || process.env.PORT ;
 const users=[{}];
 
 app.use(cors());
+
 app.get("/",(req,res)=>{
     res.send("lets roll");
 })
